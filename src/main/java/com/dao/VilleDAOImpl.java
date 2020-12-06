@@ -18,11 +18,12 @@ public class VilleDAOImpl implements VilleDAO {
 		Ville ville = null;
 		ArrayList<Ville> villes = new ArrayList<Ville>();
 		Connection con = JDBCConfiguration.connectionBDD();
-
+		Statement stmt = null;
+		
 		String requete = "SELECT * FROM ville_france";
 
 		try {
-			Statement stmt = con.createStatement();
+			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(requete);
 			while (rs.next()) {
 				ville = new Ville();
@@ -35,22 +36,31 @@ public class VilleDAOImpl implements VilleDAO {
 				ville.setLongitude(rs.getString(7));
 				villes.add(ville);
 			}
+			rs.close();
 			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
 		}
+		
 		return villes;
 	}
 
 	public ArrayList<Ville> getInfoVilles(String param) {
 		ArrayList<Ville> villes = new ArrayList<Ville>();
 		Ville ville = null;
-
-		String requete = "SELECT * FROM ville_france WHERE code_postal = " + param;
 		Connection con = JDBCConfiguration.connectionBDD();
+		Statement stmt = null;
+		
+		String requete = "SELECT * FROM ville_france WHERE code_postal = " + param;
 
 		try {
-			Statement stmt = con.createStatement();
+			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(requete);
 			while (rs.next()) {
 				ville = new Ville();
@@ -63,49 +73,79 @@ public class VilleDAOImpl implements VilleDAO {
 				ville.setLongitude(rs.getString(7));
 				villes.add(ville);
 			}
+			rs.close();
 			return villes;
-		} catch (SQLException e) {
+		} catch (SQLException se) {
 			System.out.println("Une erreur s'est produite.");
 			return null;
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
 		}
-
 	}
 
 	public void setVille(Ville ville) {
+		Statement stmt = null;
+		
 		try {
 			Connection con = JDBCConfiguration.connectionBDD();
-			Statement stmt = con.createStatement();
+			stmt = con.createStatement();
 			stmt.executeUpdate(
 					"Insert into ville_france(Code_commune_INSEE,Nom_commune,Libelle_acheminement,Ligne_5,Latitude,Code_postal,Longitude)"
 							+ " values(" + ville.getCodeCommune() + ",'" + ville.getNomCommune() + "','"
 							+ ville.getLibelleAcheminement() + "','" + ville.getLigne() + "'," + ville.getLatitude()
 							+ "," + ville.getCodePostal() + "," + ville.getLongitude() + ")");
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
 		}
 	}
 	
 	public void supprimer(String Code_commune_INSEE) {
+		Statement stmt = null;
+		
 		try {
 			Connection con = JDBCConfiguration.connectionBDD();
-			Statement stmt = con.createStatement();
+			stmt = con.createStatement();
 			stmt.executeUpdate("DELETE FROM ville_france WHERE Code_commune_INSEE = '" + Code_commune_INSEE + "'");
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
 		}
 	}
 
 	public void mettreAJour(Ville ville) {
+		Statement stmt = null;
+		
 		try {
 			Connection con = JDBCConfiguration.connectionBDD();
-			Statement stmt = con.createStatement();
+			stmt = con.createStatement();
 			stmt.executeUpdate("UPDATE ville_france SET Nom_commune=' " + ville.getNomCommune() + "', Code_postal='"
 					+ ville.getCodePostal() + "', Libelle_acheminement='" + ville.getLibelleAcheminement()
 					+ "', Ligne_5 = '" + ville.getLigne() + "', Latitude='" + ville.getLatitude() + "', Longitude='"
 					+ ville.getLongitude() + "'  WHERE Code_commune_INSEE=' " + ville.getCodeCommune() + "'");
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
 		}
 	}
 	

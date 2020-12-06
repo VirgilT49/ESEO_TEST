@@ -2,19 +2,19 @@ package com.dto;
 
 public class Ville {
 	
-	public String codeCommune;
+	private String codeCommune;
 	
-	public String nomCommune;
+	private String nomCommune;
 	
-	public String codePostal;
+	private String codePostal;
 	
-	public String libelleAcheminement;
+	private String libelleAcheminement;
 	
-	public String ligne;
+	private String ligne;
 	
-	public String latitude;
+	private String latitude;
 	
-	public String longitude;
+	private String longitude;
 
 	public String getCodeCommune() {
 		return codeCommune;
