@@ -19,12 +19,13 @@ public class VilleDAOImpl implements VilleDAO {
 		ArrayList<Ville> villes = new ArrayList<Ville>();
 		Connection con = JDBCConfiguration.connectionBDD();
 		Statement stmt = null;
+		ResultSet rs = null;
 		
 		String requete = "SELECT * FROM ville_france";
 
 		try {
 			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(requete);
+			rs = stmt.executeQuery(requete);
 			while (rs.next()) {
 				ville = new Ville();
 				ville.setCodeCommune(rs.getString(1));
@@ -36,7 +37,6 @@ public class VilleDAOImpl implements VilleDAO {
 				ville.setLongitude(rs.getString(7));
 				villes.add(ville);
 			}
-			rs.close();
 			con.close();
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -45,6 +45,13 @@ public class VilleDAOImpl implements VilleDAO {
 				if (stmt != null)
 					stmt.close();
 			} catch (SQLException se2) {
+				se2.printStackTrace();
+			}
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException se3) {
+				se3.printStackTrace();
 			}
 		}
 		
@@ -56,12 +63,13 @@ public class VilleDAOImpl implements VilleDAO {
 		Ville ville = null;
 		Connection con = JDBCConfiguration.connectionBDD();
 		Statement stmt = null;
+		ResultSet rs = null;
 		
 		String requete = "SELECT * FROM ville_france WHERE code_postal = " + param;
 
 		try {
 			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(requete);
+			rs = stmt.executeQuery(requete);
 			while (rs.next()) {
 				ville = new Ville();
 				ville.setCodeCommune(rs.getString(1));
@@ -83,6 +91,13 @@ public class VilleDAOImpl implements VilleDAO {
 				if (stmt != null)
 					stmt.close();
 			} catch (SQLException se2) {
+				se2.printStackTrace();
+			}
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException se3) {
+				se3.printStackTrace();
 			}
 		}
 	}
