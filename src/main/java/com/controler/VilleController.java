@@ -50,7 +50,7 @@ public class VilleController {
 
 	// Methode DELETE
 	@RequestMapping(value = "/ville/delete/{Code_commune_INSEE}", method = RequestMethod.DELETE)
-	public void deleteEmployeeById(@PathVariable String codeCommune) throws Exception {
+	public void deleteEmployeeById(@PathVariable("Code_commune_INSEE") String codeCommune) throws Exception {
 		System.out.println("Appel DELETE");
 		villeService.supprimer(codeCommune);
 	}
