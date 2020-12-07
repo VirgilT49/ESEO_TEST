@@ -28,8 +28,7 @@ public class VilleController {
 			throws ClassNotFoundException, SQLException {
 		System.out.println("Appel GET");
 		System.out.println("param = " + monParam);
-		ArrayList<Ville> ville = villeService.getInfoVille(monParam);
-		return ville;
+		return villeService.getInfoVille(monParam);
 	}
 	
 	// Methode POST
@@ -38,8 +37,7 @@ public class VilleController {
 	public ArrayList<Ville> appelPost(@RequestBody Ville ville) throws ClassNotFoundException, SQLException {
 		System.out.println("Appel POST");
 		villeService.creerVille(ville);
-		ArrayList<Ville> ville1 = null;
-		return ville1;
+		return null;
 	}
 
 	// Methode PUT
@@ -52,8 +50,8 @@ public class VilleController {
 
 	// Methode DELETE
 	@RequestMapping(value = "/ville/delete/{Code_commune_INSEE}", method = RequestMethod.DELETE)
-	public void deleteEmployeeById(@PathVariable String Code_commune_INSEE) throws Exception {
+	public void deleteEmployeeById(@PathVariable String codeCommune) throws Exception {
 		System.out.println("Appel DELETE");
-		villeService.supprimer(Code_commune_INSEE);
+		villeService.supprimer(codeCommune);
 	}
 }

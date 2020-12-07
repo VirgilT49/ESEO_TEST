@@ -29,8 +29,8 @@ public class VilleBLOImpl implements VilleBLO {
 		villeDAO.setVille(ville);
 	}
 
-	public void supprimer(String Code_commune_INSEE) {
-		villeDAO.supprimer(Code_commune_INSEE);
+	public void supprimer(String CodeCommune) {
+		villeDAO.supprimer(CodeCommune);
 	}
 	
 	public void mettreAJour(Ville ville) {

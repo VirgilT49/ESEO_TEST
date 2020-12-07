@@ -16,7 +16,7 @@ public class VilleDAOImpl implements VilleDAO {
 
 	public ArrayList<Ville> getInfoVille() {
 		Ville ville = null;
-		ArrayList<Ville> villes = new ArrayList<Ville>();
+		ArrayList<Ville> villes = new ArrayList<>();
 		Connection con = JDBCConfiguration.connectionBDD();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -59,7 +59,7 @@ public class VilleDAOImpl implements VilleDAO {
 	}
 
 	public ArrayList<Ville> getInfoVilles(String param) {
-		ArrayList<Ville> villes = new ArrayList<Ville>();
+		ArrayList<Ville> villes = new ArrayList<>();
 		Ville ville = null;
 		Connection con = JDBCConfiguration.connectionBDD();
 		Statement stmt = null;
@@ -124,13 +124,13 @@ public class VilleDAOImpl implements VilleDAO {
 		}
 	}
 	
-	public void supprimer(String Code_commune_INSEE) {
+	public void supprimer(String codeCommune) {
 		Statement stmt = null;
 		
 		try {
 			Connection con = JDBCConfiguration.connectionBDD();
 			stmt = con.createStatement();
-			stmt.executeUpdate("DELETE FROM ville_france WHERE Code_commune_INSEE = '" + Code_commune_INSEE + "'");
+			stmt.executeUpdate("DELETE FROM ville_france WHERE Code_commune_INSEE = '" +codeCommune + "'");
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} finally {

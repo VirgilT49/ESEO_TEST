@@ -10,7 +10,7 @@ public interface VilleBLO {
 
 	public void creerVille(Ville ville);
 	
-	public void supprimer(String code_commune_INSEE);
+	public void supprimer(String codeCommune);
 
 	public void mettreAJour(Ville ville);
 }

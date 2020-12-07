@@ -27,11 +27,11 @@ public class JDBCConfiguration {
 
 		} catch (SQLException se) {
 			se.printStackTrace();
-			System.out.println("Erreur");
+			System.out.println("Erreur" + se);
 			System.exit(0);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Erreur");
+			System.out.println("Erreur" + e);
 			System.exit(0);
 		}
 		

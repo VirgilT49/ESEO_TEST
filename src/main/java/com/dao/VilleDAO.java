@@ -12,7 +12,7 @@ public interface VilleDAO {
 
 	public void setVille(Ville ville);
 	
-	public void supprimer(String Code_commune_INSEE);
+	public void supprimer(String codeCommune);
 
 	public void mettreAJour(Ville ville);
 }
