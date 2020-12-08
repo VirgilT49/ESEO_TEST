@@ -21,37 +21,37 @@ public class VilleController {
 	@Autowired
 	VilleBLO villeService;
 
-	// Methode GET
+	// GET
 	@RequestMapping(value = "/ville", method = RequestMethod.GET)
 	@ResponseBody
 	public ArrayList<Ville> appelGet(@RequestParam(required = false, value = "codePostal") String monParam)
 			throws ClassNotFoundException, SQLException {
-		System.out.println("Appel GET");
-		System.out.println("param = " + monParam);
+		System.out.println("Requete GET");
+		System.out.println("Param = " + monParam);
 		return villeService.getInfoVille(monParam);
 	}
 	
-	// Methode POST
+	// POST
 	@RequestMapping(value = "/ville", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<Ville> appelPost(@RequestBody Ville ville) throws ClassNotFoundException, SQLException {
-		System.out.println("Appel POST");
+		System.out.println("Requete POST");
 		villeService.creerVille(ville);
 		return null;
 	}
 
-	// Methode PUT
+	// PUT
 	@RequestMapping(value = "/ville", method = RequestMethod.PUT)
 	@ResponseBody
 	public void appelPut(@RequestBody Ville ville) throws ClassNotFoundException, SQLException {
-		System.out.println("Appel PUT");
+		System.out.println("Requete PUT");
 		villeService.mettreAJour(ville);
 	}
 
-	// Methode DELETE
+	// DELETE
 	@RequestMapping(value = "/ville/delete/{Code_commune_INSEE}", method = RequestMethod.DELETE)
 	public void deleteEmployeeById(@PathVariable("Code_commune_INSEE") String codeCommune) throws Exception {
-		System.out.println("Appel DELETE");
+		System.out.println("Requete DELETE");
 		villeService.supprimer(codeCommune);
 	}
 }
